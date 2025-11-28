@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Inception",
+    "poster": "https://image.tmdb.org/t/p/w200/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg",
+    "rating": 8.8
+  },
+  {
+    "title": "The Dark Knight",
+    "poster": "https://image.tmdb.org/t/p/w200/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    "rating": 9.0
+  },
+  {
+    "title": "Interstellar",
+    "poster": "https://image.tmdb.org/t/p/w200/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
+    "rating": 8.6
+  }
+]

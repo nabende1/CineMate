@@ -1,12 +1,22 @@
+// src/js/ui.mjs
 export function loadHeaderFooter() {
-  const header = document.querySelector('#header');
-  const footer = document.querySelector('#footer');
+  const header = document.getElementById('header');
+  const footer = document.getElementById('footer');
 
-  fetch('/partials/header.html')
-    .then(res => res.text())
-    .then(html => { header.innerHTML = html; });
+  if (header) {
+    header.innerHTML = `
+      <h2>CineMate</h2>
+      <nav>
+        <a href="/index.html">Home</a> |
+        <a href="/search/index.html">Search</a> |
+        <a href="/watchlist/index.html">Watchlist</a>
+      </nav>
+    `;
+  }
 
-  fetch('/partials/footer.html')
-    .then(res => res.text())
-    .then(html => { footer.innerHTML = html; });
+  if (footer) {
+    footer.innerHTML = `
+      <p>&copy; ${new Date().getFullYear()} CineMate</p>
+    `;
+  }
 }

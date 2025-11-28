@@ -1,17 +1,72 @@
 [
   {
+    "id": 550,
+    "title": "Fight Club",
+    "poster": "https://image.tmdb.org/t/p/w500/bptfVGEQuv6vDTIMVCHjJ9Dz8PX.jpg",
+    "rating": 8.4,
+    "description": "A ticking‑time‑bomb insomniac and a soap salesman form an underground fight club."
+  },
+  {
+    "id": 278,
+    "title": "The Shawshank Redemption",
+    "poster": "https://image.tmdb.org/t/p/w500/q6y0Go1tsGEsmtFryDOJo3dEmqu.jpg",
+    "rating": 9.3,
+    "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption."
+  },
+  {
+    "id": 238,
+    "title": "The Godfather",
+    "poster": "https://image.tmdb.org/t/p/w500/3bhkrj58Vtu7enYsRolD1fZdja1.jpg",
+    "rating": 9.2,
+    "description": "The aging patriarch of an organized crime dynasty transfers control to his reluctant son."
+  },
+  {
+    "id": 680,
+    "title": "Pulp Fiction",
+    "poster": "https://image.tmdb.org/t/p/w500/dM2w364MScsjFf8pfMbaWUcWrR.jpg",
+    "rating": 8.9,
+    "description": "The lives of two mob hitmen, a boxer, and a pair of bandits intertwine in four tales of violence and redemption."
+  },
+  {
+    "id": 497,
+    "title": "The Green Mile",
+    "poster": "https://image.tmdb.org/t/p/w500/velWPhVMQeQKcxggNEU8YmIo52R.jpg",
+    "rating": 8.6,
+    "description": "The lives of guards on Death Row are affected by one of their charges: a black man accused of child murder who has a mysterious gift."
+  },
+  {
+    "id": 13,
+    "title": "Forrest Gump",
+    "poster": "https://image.tmdb.org/t/p/w500/saHP97rTPS5eLmrLQEcANmKrsFl.jpg",
+    "rating": 8.8,
+    "description": "The presidencies of Kennedy and Johnson, Vietnam, Watergate, and more through the eyes of an Alabama man with an IQ of 75."
+  },
+  {
+    "id": 27205,
     "title": "Inception",
-    "poster": "https://image.tmdb.org/t/p/w200/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg",
-    "rating": 8.8
+    "poster": "https://image.tmdb.org/t/p/w500/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg",
+    "rating": 8.8,
+    "description": "A thief steals corporate secrets through dream-sharing technology but gets a chance at redemption if he can plant an idea instead of stealing one."
   },
   {
+    "id": 155,
     "title": "The Dark Knight",
-    "poster": "https://image.tmdb.org/t/p/w200/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
-    "rating": 9.0
+    "poster": "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    "rating": 9.0,
+    "description": "When the menace known as the Joker emerges, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice."
   },
   {
-    "title": "Interstellar",
-    "poster": "https://image.tmdb.org/t/p/w200/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
-    "rating": 8.6
+    "id": 424,
+    "title": "Schindler's List",
+    "poster": "https://image.tmdb.org/t/p/w500/c8Ass7acuOe4za6DhSattE359gr.jpg",
+    "rating": 8.9,
+    "description": "In German-occupied Poland during World War II, Oskar Schindler becomes concerned for his Jewish workforce."
+  },
+  {
+    "id": 550988,
+    "title": "Top Gun: Maverick",
+    "poster": "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg",
+    "rating": 8.3,
+    "description": "After more than thirty years of service as one of the Navy's top aviators, Pete Maverick Mitchell is where he belongs, pushing the envelope as a courageous test pilot."
   }
 ]

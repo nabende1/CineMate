@@ -1,10 +1,9 @@
 import { loadHeaderFooter } from '../ui.mjs';
-import { getWatchlist } from '../storage.mjs';
-import { renderMovieGrid } from '../MovieGrid.mjs';
+import { renderMovieGrid } from '../components/MovieGrid.mjs';
 
 document.addEventListener('DOMContentLoaded', () => {
   loadHeaderFooter();
 
-  const movies = getWatchlist();
-  renderMovieGrid(movies, '#movie-grid');
+  const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+  renderMovieGrid(watchlist, '#watchlist-container'); // Use selector string
 });

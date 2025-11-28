@@ -1,0 +1,30 @@
+.movie-card-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.movie-card-details img {
+    width: 300px;
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.movie-info {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.movie-info h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.movie-info p {
+    margin-bottom: 0.5rem;
+}

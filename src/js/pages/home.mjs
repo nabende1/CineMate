@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     movies = await fetchPopularMovies();
   } catch {
     console.warn('API failed, using local JSON fallback');
-    const res = await fetch('/json/sample_movies.json');
+    const res = await fetch('json/sample_movies.json');
     movies = await res.json();
   }
 

@@ -2,22 +2,45 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineMate - Movie Details</title>
-    <link rel="stylesheet" href="/css/globals.css">
-    <link rel="stylesheet" href="/css/movie.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CineMate • Movie</title>
+
+    <link rel="stylesheet" href="/css/globals.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/movie.css" />
 </head>
 
 <body>
+
     <header id="header"></header>
 
-    <main>
-        <div id="movie-details" class="movie-details"></div>
+    <main id="movie-page">
+
+        <!-- HERO BANNER -->
+        <section id="movie-hero" class="movie-hero"></section>
+
+        <!-- MOVIE INFO -->
+        <section id="movie-info" class="movie-info"></section>
+
+        <!-- CAST -->
+        <section class="cast-section">
+            <h2>Cast</h2>
+            <div id="cast-list" class="cast-row"></div>
+        </section>
+
+        <!-- SIMILAR MOVIES -->
+        <section class="similar-section">
+            <h2>Similar Movies</h2>
+            <div id="similar-grid" class="movie-grid"></div>
+        </section>
+
     </main>
 
     <footer id="footer"></footer>
 
+    <script type="module" src="/js/app.mjs"></script>
     <script type="module" src="/js/pages/movie.mjs"></script>
 </body>
 

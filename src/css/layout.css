@@ -1,0 +1,340 @@
+/* ========================================
+   LAYOUT.CSS - Page Layout & Structure
+   ======================================== */
+
+/* ========================================
+   MAIN LAYOUT WRAPPER
+   ======================================== */
+
+.layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ========================================
+   SIDEBAR (DESKTOP & MOBILE)
+   ======================================== */
+
+.sidebar {
+    width: 220px;
+    background: var(--dark-base);
+    color: #fff;
+    padding: 1rem;
+    display: none; /* Hidden on mobile */
+}
+
+.sidebar ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sidebar li {
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* Mobile sidebar slide-out */
+.sidebar.mobile-open {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100%;
+    background: var(--dark-base);
+    padding-top: 3rem;
+    transform: translateX(-100%);
+    transition: 0.3s ease-in-out;
+    z-index: 9999;
+}
+
+.sidebar.show {
+    transform: translateX(0);
+}
+
+/* ========================================
+   MOBILE HEADER
+   ======================================== */
+
+.mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: var(--header-bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.mobile-header .search-bar input {
+    width: 80%;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: var(--dark-base);
+}
+
+.hamburger {
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ========================================
+   MAIN CONTENT AREA
+   ======================================== */
+
+.main-content {
+    flex: 1;
+    padding: 1rem;
+}
+
+/* ========================================
+   DESKTOP SEARCH
+   ======================================== */
+
+.desktop-search {
+    display: none;
+    margin-bottom: 1rem;
+}
+
+.desktop-search input {
+    width: 40%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid var(--secondary);
+    background: #fff;
+    color: var(--dark-base);
+}
+
+/* ========================================
+   TRENDING CONTROLS
+   ======================================== */
+
+.trend-switch {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.trend-btn {
+    padding: 8px 14px;
+    background: var(--soft-bg);
+    border-radius: 6px;
+    color: var(--dark-base);
+    cursor: pointer;
+    border: 2px solid var(--secondary);
+}
+
+.trend-btn.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+.loader {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+}
+
+/* ============================================================
+   DESKTOP TOP NAV (Logo + Search + Menu)
+   ============================================================ */
+
+.desktop-top-nav {
+    display: none;
+    /* Hidden on mobile */
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+
+    /* keeps layout aligned with main content */
+    width: 100%;
+}
+
+/* logo */
+.desktop-top-nav .logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+/* right-side nav menu */
+.desktop-top-nav .desktop-menu {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.desktop-top-nav .desktop-menu a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.desktop-top-nav .desktop-menu a:hover,
+.desktop-top-nav .desktop-menu a.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* Centered search bar in desktop nav */
+.desktop-top-nav .desktop-search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.desktop-top-nav .desktop-search input {
+    width: 60%;
+    max-width: 420px;
+}
+/* Layout becomes vertical first, then sidebar + main */
+.layout {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================================
+   DESKTOP TOP NAV — Matches Wireframe 1:1
+   ============================================================ */
+
+.desktop-top-nav {
+    display: none;
+    /* Enabled on desktop via media query */
+    width: 100%;
+    padding: 1rem 1.5rem;
+
+    background: var(--soft-bg);
+    /* light background like mockup */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+/* ------------------------------
+   LOGO (Left)
+   ------------------------------ */
+.desktop-top-nav .logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-right: 1rem;
+    white-space: nowrap;
+}
+
+/* ------------------------------
+   SEARCH BAR (Center)
+   ------------------------------ */
+.desktop-top-nav .desktop-search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.desktop-top-nav .desktop-search input {
+    width: 100%;
+    max-width: 420px;
+
+    background: #f1f1f1;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    color: var(--dark-base);
+
+    outline: none;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.desktop-top-nav .desktop-search input:focus {
+    box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* Suggestions dropdown inherits your existing styles */
+
+/* ------------------------------
+   NAV MENU (Right)
+   ------------------------------ */
+.desktop-top-nav .desktop-menu {
+    display: flex;
+    gap: 1.4rem;
+}
+
+.desktop-top-nav .desktop-menu a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: 0.15s ease;
+}
+
+.desktop-top-nav .desktop-menu a:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.desktop-top-nav .desktop-menu a.active {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* ========================================
+   RESPONSIVE LAYOUT ADJUSTMENTS
+   ======================================== */
+
+@media (min-width: 840px) {
+    .mobile-header {
+        display: none;
+    }
+         .desktop-top-nav {
+             display: flex;
+         }
+         }
+         .layout {
+             flex-direction: column;
+             /* top nav stays on top */
+         }
+    
+         .sidebar,
+         .main-content {
+             display: block;
+         }
+    
+         /* Wrap sidebar + main side-by-side */
+         .content-row {
+             display: flex;
+         }
+
+    .sidebar {
+        display: block;
+        position: relative;
+        transform: none !important;
+        width: 220px;
+    }
+
+    .desktop-search {
+        display: none;
+        /* moved into top bar */
+    }
+
+    .desktop-top-nav {
+        display: flex;
+    }

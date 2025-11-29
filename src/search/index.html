@@ -4,34 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CineMate - Search</title>
-    <link rel="stylesheet" href="/css/globals.css">
-    <link rel="stylesheet" href="/css/home.css">
+    <title>Cinemate • Search</title>
+
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
 </head>
 
 <body>
     <header id="header"></header>
 
-    <main>
-        <h1>Search Movies</h1>
-       
-        
+    <main class="search-page">
+        <section id="search-bar-container"></section>
 
-        <div class="search-box">
-            <input type="text" id="search-input" placeholder="Search movies..." autocomplete="off" />
-            <ul id="suggestions" class="suggestions"></ul>
-            <button id="search-button">Search</button>
-        </div>
-        <div id="search-results"></div>
-
+        <section id="results-container">
+            <p class="placeholder">Start typing to search for movies…</p>
+        </section>
     </main>
-
-    
-
 
     <footer id="footer"></footer>
 
-    <script type="module" src="/js/pages/search.mjs"></script>
+    <script type="module" src="../js/app.mjs"></script>
+    <script type="module" src="../js/pages/search.mjs"></script>
 </body>
 
 </html>

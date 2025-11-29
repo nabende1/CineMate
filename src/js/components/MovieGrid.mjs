@@ -1,27 +1,23 @@
-import { createMovieCard } from './MovieCard.mjs';
+// src/js/components/MovieGrid.mjs
+import { createMovieCard } from "./MovieCard.mjs";
 
-/**
- * Render a grid of movies into a container.
- * @param {Array} movies - Array of movie objects
- * @param {string|HTMLElement} container - Optional container (selector or DOM element)
- */
-export function renderMovieGrid(movies, container = '#movie-grid') {
-  // If container is a string selector, query the DOM
-  if (typeof container === 'string') {
-    container = document.querySelector(container);
-  }
+export function renderMovieGrid(movies, container) {
+    if (!container) return console.warn("Popular grid container missing");
+    container.innerHTML = "";
 
-  if (!container) return;
+    movies.forEach(movie => {
+        const card = createMovieCard(movie);
+        container.appendChild(card);
+    });
+}
 
-  container.innerHTML = '';
-
-  if (!movies.length) {
-    container.innerHTML = '<p>No movies found.</p>';
-    return;
-  }
-
-  movies.forEach(movie => {
-    const card = createMovieCard(movie);
-    container.appendChild(card);
-  });
+export function renderMovieGridAppend(parent, movies) {
+  parent.innerHTML += movies
+    .map(movie => `
+      <a class="movie-card" href="/movie/?id=${movie.id}">
+        <img src="https://image.tmdb.org/t/p/w300${movie.poster_path}" alt="">
+        <p>${movie.title}</p>
+      </a>
+    `)
+    .join("");
 }

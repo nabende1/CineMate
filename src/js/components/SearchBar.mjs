@@ -1,17 +1,15 @@
-export function createSearchBar(containerSelector, onSearch) {
-  const container = document.querySelector(containerSelector);
-  if (!container) return;
-
-  const form = document.createElement('form');
-  form.innerHTML = `
-    <input type="text" placeholder="Search movies..." id="search-input" />
-    <button type="submit">Search</button>
+export function setupSearchBar({ parent, onSearch }) {
+  parent.innerHTML = `
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search movies…">
+    </div>
   `;
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const query = document.querySelector('#search-input').value.trim();
-    onSearch(query);
-  });
 
-  container.appendChild(form);
+  const input = parent.querySelector("#search-input");
+
+  let typingTimer;
+  input.addEventListener("input", () => {
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(() => onSearch(input.value), 400); // debounce 400ms
+  });
 }

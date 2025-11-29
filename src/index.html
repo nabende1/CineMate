@@ -2,24 +2,71 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CineMate - Home</title>
-    <link rel="stylesheet" href="css/globals.css">
-    <link rel="stylesheet" href="css/home.css">
+
+    <link rel="stylesheet" href="/css/globals.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/components.css" />
+    <link rel="stylesheet" href="/css/home.css" />
 </head>
 
 <body>
-    <header id="header"></header>
 
-    <main>
-        <h1>Popular Movies</h1>
-        <div id="movie-grid" class="movie-grid"></div>
-    </main>
+    <!-- MOBILE HEADER -->
+    <header id="mobile-header" class="mobile-header">
+        <div class="search-bar">
+            <input type="text" id="mobile-search" placeholder="Search..." />
+        </div>
+        <button id="mobile-menu-btn" class="hamburger">☰</button>
+    </header>
 
-    <footer id="footer"></footer>
+    <div class="layout">
+    
+        <!-- DESKTOP TOP NAV (logo + search + nav items) -->
+        <div class="desktop-top-nav">
+            <div class="logo">
+                <img src="images/logo.png" alt="CineMate Logo" style="height: 38px; width: auto;" />
+            </div>
+        
+            <div class="desktop-search">
+                <input type="text" id="desktop-search" placeholder="Search..." autocomplete="off" />
+                <ul id="desktop-suggestions" class="suggestions"></ul>
+            </div>
+        
+            <nav class="desktop-menu">
+                <a href="/" class="active">Home</a>
+                <a href="/trending/index.html">Trending</a>
+                <a href="/watchlist/index.html">Favorites</a>
+            </nav>
+        </div>
 
-    <script type="module" src="js/app.mjs"></script>
+    <div class="content-row">
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="sidebar">
+            <ul>
+                <li class="active">Home</li>
+                <li onclick="window.location.href='/trending/index.html'">Trending</li>
+                <li onclick="window.location.href='/watchlist/index.html'">Favorites</li>
+            </ul>
+        </aside>
+    
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+    
+            <h2 class="section-title">Trending</h2>
+            <div id="trending-banner" class="banner"></div>
+    
+            <h2 class="section-title">Popular</h2>
+            <div id="popular-grid" class="movie-row"></div>
+    
+        </main>
+    </div>
+    </div>
+
+
+    <script type="module" src="/js/pages/home.mjs"></script>
 </body>
 
 </html>

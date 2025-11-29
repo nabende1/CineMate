@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinemate • Trending</title>
+
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+</head>
+
+<body>
+    <header id="header"></header>
+
+    <main class="trending-page">
+
+        <h1 class="page-title">Trending</h1>
+
+        <!-- Category Switcher -->
+        <div class="trend-switch">
+            <button class="trend-btn active" data-type="day">Today</button>
+            <button class="trend-btn" data-type="week">This Week</button>
+        </div>
+
+        <!-- Results -->
+        <div id="trending-grid" class="movie-grid"></div>
+
+        <!-- Loader -->
+        <div id="loader" class="loader hidden">Loading…</div>
+
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script type="module" src="../js/app.mjs"></script>
+    <script type="module" src="../js/pages/trending.mjs"></script>
+</body>
+
+</html>

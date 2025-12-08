@@ -1,0 +1,110 @@
+/* ========================================
+   SEARCH PAGE STYLES
+   ======================================== */
+
+.search-page {
+    padding: 1rem;
+}
+
+.search-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.search-info {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-top: 1rem;
+}
+
+.search-info strong {
+    color: var(--accent);
+}
+
+/* Search results grid */
+.movie-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 480px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1440px) {
+    .movie-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* No results state */
+.no-results {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--muted);
+}
+
+.no-results h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.no-results p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Loader */
+.loader {
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.1rem;
+    color: var(--muted);
+}
+
+/* Back button */
+.back-btn {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--muted);
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.25s;
+}
+
+.back-btn:hover {
+    background: var(--muted);
+    color: var(--card);
+}
+
+/* Placeholder and error */
+.placeholder,
+.error {
+    text-align: center;
+    padding: 3rem;
+    color: var(--muted);
+    font-style: italic;
+}
+
+.error {
+    color: var(--accent);
+}

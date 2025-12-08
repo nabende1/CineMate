@@ -3,79 +3,111 @@
    ======================================== */
 
 /* ========================================
-   MOVIE CONTAINER & HERO
+   MAIN CONTAINER & LAYOUT
    ======================================== */
 
 .movie-container {
-    padding: 2rem;
+    padding: 1rem;
 }
 
-.movie-hero {
-    height: 420px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    border-radius: 10px;
+/* Back Button */
+.back-btn {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--muted);
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.25s;
+}
+
+.back-btn:hover {
+    background: var(--muted);
+    color: var(--card);
 }
 
 /* ========================================
-   MOVIE CARD DETAILS
+   MOVIE HERO - SIMPLIFIED
    ======================================== */
 
-.movie-card-details {
+.movie-hero {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-end;
+}
+
+.hero-content {
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 2rem;
+    color: white;
+    border-radius: 0 0 10px 10px;
+}
+
+.hero-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.hero-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* ========================================
+   MOVIE HEADER & INFO
+   ======================================== */
+
+.movie-header {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 2rem;
-    background-color: var(--card);
+    gap: 2rem;
+    margin-bottom: 3rem;
+    background: var(--card);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.movie-card-details img {
-    width: 300px;
-    max-width: 100%;
-    border-radius: 5px;
+.movie-poster {
+    width: 100%;
+    max-width: 280px;
+    border-radius: 12px;
+    margin: 0 auto;
 }
 
-/* ========================================
-   MOVIE INFO
-   ======================================== */
-
 .movie-info {
-    margin-top: 1rem;
     text-align: center;
 }
 
 .movie-info h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
-}
-
-.movie-info p {
-    margin-bottom: 0.5rem;
-}
-
-.movie-header {
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-
-.movie-poster {
-    width: 280px;
-    border-radius: 12px;
+    color: var(--text);
 }
 
 .movie-meta {
     margin: 10px 0;
     opacity: 0.8;
+    color: var(--muted);
+    font-size: 0.9rem;
 }
 
-.meta {
-    opacity: 0.8;
-    margin-bottom: 1rem;
+.movie-overview {
+    line-height: 1.6;
+    margin: 1rem 0;
+    color: var(--text);
 }
 
 /* ========================================
@@ -84,49 +116,20 @@
 
 .genres {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     list-style: none;
     padding: 0;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-/* ========================================
-   CAST & SIMILAR GRIDS
-   ======================================== */
-
-.cast-row {
-    display: flex;
-    overflow-x: auto;
-    gap: 1rem;
-    padding-bottom: 1rem;
-}
-
-.cast-card {
-    width: 120px;
-    flex-shrink: 0;
-    text-align: center;
-}
-
-.cast-grid,
-.similar-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 1rem;
-}
-
-.actor-card img,
-.similar-card img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-/* ========================================
-   TRAILER
-   ======================================== */
-
-.movie-trailer iframe {
-    width: 100%;
-    height: 420px;
-    border-radius: 10px;
+.genres li {
+    background: var(--accent);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
 }
 
 /* ========================================
@@ -141,4 +144,169 @@
     cursor: pointer;
     border: none;
     color: #fff;
+    font-size: 0.9rem;
+    transition: background 0.25s, transform 0.2s;
+}
+
+.watch-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.watch-btn.active {
+    background: var(--secondary);
+}
+
+/* ========================================
+   CAST SECTION
+   ======================================== */
+
+.cast-section {
+    margin-bottom: 2rem;
+}
+
+.cast-row {
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+    scrollbar-width: thin;
+}
+
+.cast-row::-webkit-scrollbar {
+    height: 6px;
+}
+
+.cast-row::-webkit-scrollbar-thumb {
+    background: var(--muted);
+    border-radius: 3px;
+}
+
+.cast-card {
+    width: 120px;
+    flex-shrink: 0;
+    text-align: center;
+    background: var(--card);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cast-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+}
+
+.cast-card h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    color: var(--text);
+}
+
+.cast-card p {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+/* ========================================
+   SIMILAR MOVIES
+   ======================================== */
+
+.similar-section {
+    margin-bottom: 2rem;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* ========================================
+   SECTION TITLES
+   ======================================== */
+
+.section-title {
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin: 1.4rem 0 .6rem;
+    color: var(--text);
+}
+
+/* ========================================
+   TABLET STYLES
+   ======================================== */
+
+@media screen and (min-width: 768px) {
+    .movie-container {
+        padding: 2rem;
+    }
+
+    .movie-hero {
+        height: 400px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .movie-header {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .movie-poster {
+        margin: 0;
+    }
+
+    .movie-info {
+        text-align: left;
+    }
+
+    .genres {
+        justify-content: flex-start;
+    }
+
+    .cast-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        overflow-x: visible;
+        gap: 1.5rem;
+    }
+
+    .cast-card {
+        width: 100%;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+/* ========================================
+   DESKTOP STYLES
+   ======================================== */
+
+@media screen and (min-width: 1024px) {
+    .movie-hero {
+        height: 450px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .cast-row {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
 }

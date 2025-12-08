@@ -5,27 +5,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinemate • Search</title>
-
-    <link rel="stylesheet" href="../css/globals.css">
-    <link rel="stylesheet" href="../css/layout.css">
-    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="/css/globals.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/search.css">
+    <link rel="stylesheet" href="/css/filters.css" />
 </head>
 
 <body>
-    <header id="header"></header>
+    <div id="header-partial"></div>
 
-    <main class="search-page">
-        <section id="search-bar-container"></section>
+    <div class="layout">
+        <div id="sidebar-partial"></div>
 
-        <section id="results-container">
-            <p class="placeholder">Start typing to search for movies…</p>
-        </section>
-    </main>
+        <div class="content-row">
+            <main class="main-content search-page">
+                <button class="back-btn" onclick="history.back()">
+                    ← Back
+                </button>
 
-    <footer id="footer"></footer>
+                <div class="search-header">
+                    <h1 class="page-title">Search Results</h1>
+                    <div id="search-info" class="search-info"></div>
+                </div>
 
-    <script type="module" src="../js/app.mjs"></script>
-    <script type="module" src="../js/pages/search.mjs"></script>
+                <div id="results-container" class="movie-grid"></div>
+
+                <div id="search-loader" class="loader" style="display: none;">
+                    Searching for movies...
+                </div>
+
+                <div id="no-results" class="no-results" style="display: none;">
+                    <h3>No movies found</h3>
+                    <p>Try different keywords or browse our trending movies.</p>
+                    <a href="/trending/index.html" class="btn">Explore Trending</a>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div id="footer-partial"></div>
+
+    <script type="module" src="/js/utils/partials.mjs"></script>
+    <script type="module" src="/js/filters.mjs"></script>
+    <script type="module" src="/js/search.mjs"></script>
+    <script type="module" src="/js/pages/search.mjs"></script>
+
+
+    <script type="module">
+        import { loadLayoutPartials } from '/js/utils/partials.mjs';
+        import { initializeFilterManager } from '/js/filters.mjs';
+        import { initializeSearchManager } from '/js/search.mjs';
+        import { runSearchPage } from '/js/pages/search.mjs';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('🚀 Initializing search page...');
+
+            // 1. Load the Header/Sidebar/Footer HTML
+            await loadLayoutPartials();
+
+            // 2. Initialize Core Managers AFTER HTML is guaranteed to be in the DOM
+            const filterManager = initializeFilterManager();
+            const searchManager = initializeSearchManager();
+
+            // 3. Attach filter listeners. The runSearchPage init handles genre loading and UI sync.
+            filterManager.setupEventListeners();
+
+            // 4. Run the search logic for this page
+            await runSearchPage(filterManager);
+
+            console.log('✅ Search page fully initialized.');
+        });
+    </script>
 </body>
 
 </html>

@@ -5,37 +5,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinemate • Trending</title>
-
-    <link rel="stylesheet" href="../css/globals.css">
-    <link rel="stylesheet" href="../css/layout.css">
-    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="/css/globals.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/trending.css">
+    <link rel="stylesheet" href="/css/filters.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
 </head>
 
 <body>
-    <header id="header"></header>
+    <div id="header-partial"></div>
 
-    <main class="trending-page">
+    <div class="layout">
+        <div id="sidebar-partial"></div>
 
-        <h1 class="page-title">Trending</h1>
+        <div class="content-row">
+            <main class="main-content trending-page">
+                <!-- Breadcrumb Navigation -->
+                <nav class="breadcrumb">
+                    <a href="/" class="breadcrumb-link">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span class="breadcrumb-current">Trending</span>
+                </nav>
 
-        <!-- Category Switcher -->
-        <div class="trend-switch">
-            <button class="trend-btn active" data-type="day">Today</button>
-            <button class="trend-btn" data-type="week">This Week</button>
+                <h1 class="page-title">Trending</h1>
+
+                <!-- Filter and Info Section -->
+                <div class="trending-header">
+                    <div class="trend-switch">
+                        <button class="trend-btn active" data-type="day">Today</button>
+                        <button class="trend-btn" data-type="week">This Week</button>
+                    </div>
+                    <div class="trending-info">
+                        <span id="movies-loaded" class="movies-loaded">0 movies loaded</span>
+                    </div>
+                </div>
+
+                <div id="trending-grid" class="movie-grid"></div>
+
+                <div id="loader" class="loader hidden">
+                    <span class="loading-text">Loading more movies...</span>
+                </div>
+                <div id="end-of-content" class="end-of-content hidden">
+                    You've reached the end! No more movies to load.
+                </div>
+            </main>
         </div>
+    </div>
 
-        <!-- Results -->
-        <div id="trending-grid" class="movie-grid"></div>
+    <div id="footer-partial"></div>
 
-        <!-- Loader -->
-        <div id="loader" class="loader hidden">Loading…</div>
+    <script type="module" src="/js/utils/partials.mjs"></script>
+    <script type="module" src="/js/filters.mjs"></script>
+    <script type="module" src="/js/search.mjs"></script>
+    <script type="module" src="/js/pages/trending.mjs"></script>
 
-    </main>
+    <script type="module">
+        import { loadLayoutPartials } from '/js/utils/partials.mjs';
+        import { initializeFilterManager } from '/js/filters.mjs';
+        import { initializeSearchManager } from '/js/search.mjs';
+        import { runTrendingPage } from '/js/pages/trending.mjs';
 
-    <footer id="footer"></footer>
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('🚀 Initializing trending page...');
 
-    <script type="module" src="../js/app.mjs"></script>
-    <script type="module" src="../js/pages/trending.mjs"></script>
+            await loadLayoutPartials();
+
+            // 1. Initialize Core Managers (must be done after partials are loaded)
+            const filterManager = initializeFilterManager();
+            const searchManager = initializeSearchManager();
+
+            // 2. Attach filter listeners and load genres
+            // This is required to make the header filters functional and visible.
+            filterManager.setupEventListeners();
+            await filterManager.loadGenres();
+
+            // 3. Run page-specific logic
+            runTrendingPage();
+
+            console.log('✅ Trending page fully initialized');
+        });
+    </script>
 </body>
 
 </html>

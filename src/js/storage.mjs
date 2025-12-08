@@ -1,4 +1,4 @@
-const WATCHLIST_KEY = 'cine_watchlist';
+const WATCHLIST_KEY = 'watchlist';
 
 export function getWatchlist() {
   try {
@@ -18,6 +18,9 @@ export function addToWatchlist(movie) {
   if (!list.find(m => m.id === movie.id)) {
     list.push(movie);
     saveWatchlist(list);
+    
+    // Dispatch event to notify other components
+    window.dispatchEvent(new CustomEvent('watchlistUpdated'));
   }
 }
 
@@ -25,6 +28,9 @@ export function removeFromWatchlist(id) {
   let list = getWatchlist();
   list = list.filter(m => m.id !== id);
   saveWatchlist(list);
+  
+  // Dispatch event to notify other components
+  window.dispatchEvent(new CustomEvent('watchlistUpdated'));
 }
 
 export function isInWatchlist(id) {

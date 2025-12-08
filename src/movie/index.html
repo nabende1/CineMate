@@ -5,43 +5,100 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CineMate • Movie</title>
-
     <link rel="stylesheet" href="/css/globals.css" />
     <link rel="stylesheet" href="/css/layout.css" />
     <link rel="stylesheet" href="/css/components.css" />
     <link rel="stylesheet" href="/css/movie.css" />
+    <link rel="stylesheet" href="/css/filters.css" />
 </head>
 
 <body>
+    <!-- Header Partial -->
+    <div id="header-partial"></div>
 
-    <header id="header"></header>
+    <div class="layout">
+        <!-- Sidebar Partial -->
+        <div id="sidebar-partial"></div>
 
-    <main id="movie-page">
+        <div class="content-row">
+            <!-- Main Content -->
+            <main class="main-content movie-container">
+                <!-- Back Button -->
+                <button class="back-btn" onclick="history.back()">
+                    ← Back
+                </button>
 
-        <!-- HERO BANNER -->
-        <section id="movie-hero" class="movie-hero"></section>
+                <!-- HERO BANNER -->
+                <section id="movie-hero" class="movie-hero"></section>
 
-        <!-- MOVIE INFO -->
-        <section id="movie-info" class="movie-info"></section>
+                <!-- MOVIE HEADER SECTION -->
+                <section class="movie-header">
+                    <img id="movie-poster" class="movie-poster" src="" alt="Movie Poster">
+                    <div class="movie-info">
+                        <h1 id="movie-title">Movie Title</h1>
+                        <div class="movie-meta">
+                            <span id="movie-year"></span> •
+                            <span id="movie-runtime"></span> •
+                            <span id="movie-rating"></span>
+                        </div>
+                        <div class="genres" id="movie-genres"></div>
+                        <p id="movie-overview" class="movie-overview"></p>
+                        <button class="watch-btn">Add to Watchlist</button>
+                    </div>
+                </section>
 
-        <!-- CAST -->
-        <section class="cast-section">
-            <h2>Cast</h2>
-            <div id="cast-list" class="cast-row"></div>
-        </section>
+                <!-- TRAILER SECTION -->
+                <section class="movie-trailer" id="movie-trailer" style="display: none;">
+                    <h2 class="section-title">Trailer</h2>
+                    <div id="trailer-container"></div>
+                </section>
 
-        <!-- SIMILAR MOVIES -->
-        <section class="similar-section">
-            <h2>Similar Movies</h2>
-            <div id="similar-grid" class="movie-grid"></div>
-        </section>
+                <!-- CAST SECTION -->
+                <section class="cast-section">
+                    <h2 class="section-title">Cast</h2>
+                    <div id="cast-list" class="cast-row"></div>
+                </section>
 
-    </main>
+                <!-- SIMILAR MOVIES -->
+                <section class="similar-section">
+                    <h2 class="section-title">Similar Movies</h2>
+                    <div id="similar-grid" class="movie-grid"></div>
+                </section>
+            </main>
+        </div>
+    </div>
 
-    <footer id="footer"></footer>
+    <!-- Footer Partial -->
+    <div id="footer-partial"></div>
 
+    <script type="module" src="/js/utils/partials.mjs"></script>
+    <script type="module" src="/js/filters.mjs"></script>
+    <script type="module" src="/js/search.mjs"></script>
     <script type="module" src="/js/app.mjs"></script>
     <script type="module" src="/js/pages/movie.mjs"></script>
+
+    <script type="module">
+        import { loadLayoutPartials } from '/js/utils/partials.mjs';
+        import { initializeFilterManager } from '/js/filters.mjs';
+        import { initializeSearchManager } from '/js/search.mjs';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('🚀 Initializing movie page...');
+
+            // Load header/sidebar/footer partials first
+            await loadLayoutPartials();
+
+            // Initialize filters and search managers so header controls work
+            const filterManager = initializeFilterManager();
+            filterManager.setupEventListeners();
+            await filterManager.loadGenres();
+
+            // Initialize search manager (suggestions + listening to filters)
+            initializeSearchManager();
+
+            console.log('✅ Movie page fully initialized');
+        });
+    </script>
 </body>
 
 </html>

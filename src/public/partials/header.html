@@ -1,0 +1,124 @@
+<header id="mobile-header" class="mobile-header">
+    <div class="search-bar">
+        <div class="search-input-wrapper">
+            <input type="text" id="mobile-search" placeholder="Search..." />
+            <button id="mobile-search-btn" class="search-icon-btn">🔍</button>
+        </div>
+    </div>
+
+    <div class="filter-container mobile-filters">
+        <div class="filter-dropdown">
+            <button class="filter-btn mobile-filter-btn">
+                <span>🎛️ Filters</span>
+                <span class="filter-arrow">▼</span>
+            </button>
+            <div class="filter-options mobile-filter-options">
+                <div class="filter-group">
+                    <h4>Genre</h4>
+                    <div class="filter-checkboxes mobile-genre-filters">
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h4>Year</h4>
+                    <select class="filter-select mobile-year-filter year-filter">
+                        <option value="">All Years</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <h4>Rating</h4>
+                    <select class="filter-select mobile-rating-filter rating-filter">
+                        <option value="">All Ratings</option>
+                        <option value="7.5">7.5+ ⭐</option>
+                        <option value="8.0">8.0+ ⭐</option>
+                        <option value="8.5">8.5+ ⭐</option>
+                    </select>
+                </div>
+                <div class="filter-actions">
+                    <button class="apply-filters mobile-apply-filters">Apply Filters</button>
+                    <button class="clear-filters mobile-clear-filters">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="mobile-menu-btn" class="hamburger">☰</button>
+</header>
+
+<div id="mobile-sidebar" class="mobile-sidebar">
+    <div class="sidebar-header">
+        <button id="close-mobile-menu" class="close-menu">×</button>
+    </div>
+    <nav class="mobile-nav">
+        <a href="/" class="nav-link" data-page="home">Home</a>
+        <a href="/trending/index.html" class="nav-link" data-page="trending">Trending</a>
+        <a href="/watchlist/index.html" class="nav-link" data-page="favorites">Favorites</a>
+    </nav>
+</div>
+<div class="sidebar-overlay"></div>
+
+<div class="desktop-top-nav">
+    <div class="logo">
+        <img src="/images/logo.png" alt="CineMate Logo" style="height: 38px; width: auto;" />
+    </div>
+
+    <div class="desktop-search-area">
+        <div class="desktop-search">
+            <div class="search-input-wrapper">
+                <input type="text" id="desktop-search" placeholder="Search movies..." autocomplete="off" />
+                <button id="desktop-search-btn" class="search-icon-btn">🔍</button>
+            </div>
+            <ul id="desktop-suggestions" class="suggestions"></ul>
+        </div>
+
+        <div class="filter-container desktop-filters">
+            <div class="filter-dropdown">
+                <button class="filter-btn desktop-filter-btn">
+                    <span>🎛️ Filters</span>
+                    <span class="filter-arrow">▼</span>
+                </button>
+                <div class="filter-options desktop-filter-options">
+                    <div class="filter-group">
+                        <h4>Genre</h4>
+                        <div class="filter-checkboxes desktop-genre-filters">
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <h4>Year</h4>
+                        <select class="filter-select desktop-year-filter year-filter">
+                            <option value="">All Years</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <h4>Rating</h4>
+                        <select class="filter-select desktop-rating-filter rating-filter">
+                            <option value="">All Ratings</option>
+                            <option value="7.5">7.5+ ⭐</option>
+                            <option value="8.0">8.0+ ⭐</option>
+                            <option value="8.5">8.5+ ⭐</option>
+                        </select>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="apply-filters desktop-apply-filters">Apply Filters</button>
+                        <button class="clear-filters desktop-clear-filters">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="desktop-menu">
+        <a href="/" class="nav-link" data-page="home">Home</a>
+        <a href="/trending/index.html" class="nav-link" data-page="trending">Trending</a>
+        <a href="/watchlist/index.html" class="nav-link" data-page="favorites">Favorites</a>
+    </nav>
+</div>

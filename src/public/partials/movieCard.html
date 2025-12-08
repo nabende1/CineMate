@@ -1,0 +1,17 @@
+<div class="movie-card" data-movie-id="{{id}}">
+    <img src="{{poster}}" alt="{{title}}" onerror="this.src='/images/fallback_poster.jpg'">
+    <div class="movie-info">
+        <h3 class="movie-title">{{title}}</h3>
+        <div class="movie-rating">
+            <span class="rating-star">⭐</span>
+            <span>{{rating}}/10</span>
+        </div>
+        <div class="movie-actions">
+            <button class="watchlist-btn {{watchlistClass}}" onclick="toggleWatchlistFromCard(this, '{{movieData}}')">
+                <span class="btn-text" {{watchlistDisplay}}>Add to Watchlist</span>
+                <span class="added-text" {{addedDisplay}}>Added</span>
+            </button>
+            <a href="/movie/index.html?id={{id}}" class="view-details">View Details</a>
+        </div>
+    </div>
+</div>

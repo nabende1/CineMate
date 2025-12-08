@@ -1,4 +1,3 @@
-<!-- src/watchlist/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,22 +8,62 @@
     <link rel="stylesheet" href="/css/globals.css" />
     <link rel="stylesheet" href="/css/layout.css" />
     <link rel="stylesheet" href="/css/components.css" />
-    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="stylesheet" href="/css/watchlist.css" />
+    <link rel="stylesheet" href="/css/filters.css" />
 </head>
 
 <body>
-    <header id="header"></header>
+    <!-- Header Partial -->
+    <div id="header-partial"></div>
 
-    <main class="main-content">
-        <h2 class="section-title">My Watchlist</h2>
-        <div id="watchlist-container" class="movie-row"></div>
-        <div id="watchlist-empty" style="display:none; margin-top:1rem;">
-            <p>Your watchlist is empty. Add movies from Home or Search.</p>
+    <div class="layout">
+        <!-- Sidebar Partial -->
+        <div id="sidebar-partial"></div>
+
+        <div class="content-row">
+            <!-- Main Content -->
+            <main class="main-content watchlist-page">
+                <h1 class="page-title">My Watchlist</h1>
+
+                <!-- Watchlist Counter -->
+                <div id="watchlist-counter" class="watchlist-counter">
+                    <span class="count">0</span> movies in your watchlist
+                </div>
+
+                <!-- Watchlist Grid -->
+                <div id="watchlist-container" class="movie-grid"></div>
+
+                <!-- Empty State -->
+                <div id="watchlist-empty" class="watchlist-empty" style="display:none;">
+                    <h3>Your Watchlist is Empty</h3>
+                    <p>Start building your watchlist by adding movies from the Home or Trending pages.</p>
+                    <div class="action-buttons">
+                        <a href="/" class="btn">Browse Movies</a>
+                        <a href="/trending/index.html" class="btn btn-secondary">Explore Trending</a>
+                    </div>
+                </div>
+            </main>
         </div>
-    </main>
+    </div>
 
-    <footer id="footer"></footer>
+    <!-- Footer Partial -->
+    <div id="footer-partial"></div>
+
+    <script type="module" src="/js/utils/partials.mjs"></script>
+    <script type="module" src="/js/search.mjs"></script>
     <script type="module" src="/js/pages/watchlist.mjs"></script>
+    <script type="module" src="/js/filters.mjs"></script>
+    <link rel="stylesheet" href="/css/footer.css" />
+
+    <script type="module">
+        import { loadLayoutPartials } from '/js/utils/partials.mjs';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('🚀 Initializing page...');
+            await loadLayoutPartials();
+            console.log('✅ Page fully initialized');
+        });
+    </script>
 </body>
 
 </html>

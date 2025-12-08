@@ -5,68 +5,77 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CineMate - Home</title>
-
     <link rel="stylesheet" href="/css/globals.css" />
     <link rel="stylesheet" href="/css/layout.css" />
     <link rel="stylesheet" href="/css/components.css" />
     <link rel="stylesheet" href="/css/home.css" />
+    <link rel="stylesheet" href="/css/filters.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
 </head>
 
 <body>
-
-    <!-- MOBILE HEADER -->
-    <header id="mobile-header" class="mobile-header">
-        <div class="search-bar">
-            <input type="text" id="mobile-search" placeholder="Search..." />
-        </div>
-        <button id="mobile-menu-btn" class="hamburger">☰</button>
-    </header>
+    <!-- Header Partial -->
+    <div id="header-partial"></div>
 
     <div class="layout">
-    
-        <!-- DESKTOP TOP NAV (logo + search + nav items) -->
-        <div class="desktop-top-nav">
-            <div class="logo">
-                <img src="images/logo.png" alt="CineMate Logo" style="height: 38px; width: auto;" />
-            </div>
-        
-            <div class="desktop-search">
-                <input type="text" id="desktop-search" placeholder="Search..." autocomplete="off" />
-                <ul id="desktop-suggestions" class="suggestions"></ul>
-            </div>
-        
-            <nav class="desktop-menu">
-                <a href="/" class="active">Home</a>
-                <a href="/trending/index.html">Trending</a>
-                <a href="/watchlist/index.html">Favorites</a>
-            </nav>
+        <!-- Sidebar Partial -->
+        <div id="sidebar-partial"></div>
+
+        <div class="content-row">
+            <!-- Main Content -->
+            <main class="main-content">
+                <h2 class="section-title">Trending</h2>
+                <div id="trending-banner" class="banner"></div>
+
+                <h2 class="section-title">Popular</h2>
+                <div id="popular-grid" class="movie-row"></div>
+            </main>
         </div>
-
-    <div class="content-row">
-        <!-- SIDEBAR -->
-        <aside id="sidebar" class="sidebar">
-            <ul>
-                <li class="active">Home</li>
-                <li onclick="window.location.href='/trending/index.html'">Trending</li>
-                <li onclick="window.location.href='/watchlist/index.html'">Favorites</li>
-            </ul>
-        </aside>
-    
-        <!-- MAIN CONTENT -->
-        <main class="main-content">
-    
-            <h2 class="section-title">Trending</h2>
-            <div id="trending-banner" class="banner"></div>
-    
-            <h2 class="section-title">Popular</h2>
-            <div id="popular-grid" class="movie-row"></div>
-    
-        </main>
-    </div>
     </div>
 
+    <!-- Footer Partial -->
+    <div id="footer-partial"></div>
 
+    <script type="module" src="/js/utils/partials.mjs"></script>
+    <script type="module" src="/js/app.mjs"></script>
+    <script type="module" src="/js/search.mjs"></script>
+    <script type="module" src="/js/pages/search.mjs"></script>
+    <script type="module" src="/js/filters.mjs"></script>
     <script type="module" src="/js/pages/home.mjs"></script>
+
+    // src\index.html (UPDATED SCRIPT BLOCK)
+    
+    <script type="module">
+        import { loadLayoutPartials } from '/js/utils/partials.mjs';
+        // Import the managers
+        import { initializeFilterManager } from '/js/filters.mjs';
+        import { initializeSearchManager } from '/js/search.mjs';
+
+        // You might have a runHomePage or similar function here
+        // import { runHomePage } from '/js/pages/home.mjs'; 
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('🚀 Initializing home page...');
+
+            await loadLayoutPartials();
+
+            // 1. Initialize Core Managers
+            const filterManager = initializeFilterManager();
+            const searchManager = initializeSearchManager();
+
+            // 2. Attach filter listeners and load genres
+            filterManager.setupEventListeners();
+            await filterManager.loadGenres(); // Load genres for the genre filters to appear
+
+            // 3. (Optional) Run home page logic
+             if (typeof runHomePage === 'function') {
+                runHomePage();
+             }
+
+            console.log('✅ Home page fully initialized.');
+        });
+    </script>
+    </body>
 </body>
 
 </html>

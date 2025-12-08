@@ -2,14 +2,82 @@
 import { fetchPopularMovies, fetchTrendingMovies } from "./fetch.mjs";
 import { renderMovieGrid } from "./components/MovieGrid.mjs";
 import { createMovieBanner } from "./components/MovieBanner.mjs";
-import { setupSearch } from "./components/Search.mjs";
 
-// DOM elements
-const trendingBanner = document.getElementById("trending-banner");
-const popularGrid = document.getElementById("popular-grid");
+// Initialize mobile menu and filters
+function initializeMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileSidebar = document.getElementById('mobile-sidebar');
+    const closeMobileMenu = document.getElementById('close-mobile-menu');
+    const sidebarOverlay = document.querySelector('.sidebar-overlay');
+
+    if (mobileMenuBtn && mobileSidebar) {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileSidebar.classList.add('active');
+            if (sidebarOverlay) sidebarOverlay.classList.add('active');
+        });
+
+        if (closeMobileMenu) {
+            closeMobileMenu.addEventListener('click', () => {
+                mobileSidebar.classList.remove('active');
+                if (sidebarOverlay) sidebarOverlay.classList.remove('active');
+            });
+        }
+
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', () => {
+                mobileSidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+        }
+    }
+}
+
+function initializeFilters() {
+    // Desktop filters
+    const desktopFilterBtn = document.querySelector('.desktop-filter-btn');
+    const desktopFilterOptions = document.querySelector('.desktop-filter-options');
+    
+    if (desktopFilterBtn && desktopFilterOptions) {
+        desktopFilterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            desktopFilterOptions.classList.toggle('active');
+        });
+    }
+
+    // Mobile filters
+    const mobileFilterBtn = document.querySelector('.mobile-filter-btn');
+    const mobileFilterOptions = document.querySelector('.mobile-filter-options');
+    
+    if (mobileFilterBtn && mobileFilterOptions) {
+        mobileFilterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileFilterOptions.classList.toggle('active');
+        });
+    }
+
+    // Close filters when clicking outside
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.filter-options').forEach(options => {
+            options.classList.remove('active');
+        });
+    });
+
+    // Prevent filter close when clicking inside
+    document.querySelectorAll('.filter-options').forEach(options => {
+        options.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    });
+}
 
 // Load homepage content
 document.addEventListener("DOMContentLoaded", async () => {
+    // Initialize mobile menu and filters FIRST
+    initializeMobileMenu();
+    initializeFilters();
+    
+    // Then setup search and load movies
     setupSearch();
 
     try {
@@ -37,15 +105,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
-
-
-export function initMenu() {
-  const btn = document.getElementById("mobile-menu-btn");
-  const sidebar = document.getElementById("sidebar");
-
-  if (!btn || !sidebar) return;
-
-  btn.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-  });
-}
+// Re-initialize when partials are loaded
+document.addEventListener('partialsLoaded', () => {
+    initializeMobileMenu();
+    initializeFilters();
+});

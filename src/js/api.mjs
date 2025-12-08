@@ -1,4 +1,6 @@
-const BASE = "https://api.themoviedb.org/3";
+// src/js/api.mjs
+
+const BASE = import.meta.env.VITE_BASE_URL || "https://api.themoviedb.org/3";
 
 export async function fetchTMDB(endpoint) {
   const url = `${BASE}${endpoint}?api_key=${import.meta.env.VITE_TMDB_KEY}`;
@@ -30,16 +32,16 @@ export async function fetchTrending(type = "day", page = 1) {
 }
 
 export async function fetchMovieDetails(id) {
-  const res = await fetch(`${BASE}/movie/${id}?api_key=${KEY}`);
+  const res = await fetch(`${BASE}/movie/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}`);
   return res.json();
 }
 
 export async function fetchMovieCredits(id) {
-  const res = await fetch(`${BASE}/movie/${id}/credits?api_key=${KEY}`);
+  const res = await fetch(`${BASE}/movie/${id}/credits?api_key=${import.meta.env.VITE_TMDB_KEY}`);
   return res.json();
 }
 
 export async function fetchSimilarMovies(id) {
-  const res = await fetch(`${BASE}/movie/${id}/similar?api_key=${KEY}`);
+  const res = await fetch(`${BASE}/movie/${id}/similar?api_key=${import.meta.env.VITE_TMDB_KEY}`);
   return res.json();
 }

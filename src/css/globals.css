@@ -108,3 +108,25 @@ main {
         opacity: 1;
     }
 }
+/* Quick footer fix */
+.main-footer {
+    background: var(--card);
+    border-top: 1px solid var(--muted);
+    padding: 2rem 1rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content p {
+    color: var(--muted);
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+/* Fix footer position with sidebar */
+@media (min-width: 768px) {
+    .main-footer {
+        margin-left: 250px;
+        width: calc(100% - 250px);
+    }
+}

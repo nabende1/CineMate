@@ -3,77 +3,345 @@
    ============================================================ */
 
 /* ------------------------------------------------------------
-   MOVIE GRID
+   POPULAR MOVIES GRID - EXACT SPECIFICATIONS
    ------------------------------------------------------------ */
-
-.movie-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-    margin-top: 2rem;
-}
 
 .movie-row {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    /* Mobile (< 480px): 1 per row × 20 rows = 20 movies total */
+    grid-template-columns: repeat(1, 1fr);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 480px) {
     .movie-row {
+        /* Small Tablet (480px+): 2 per row × 10 rows = 20 movies total */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .movie-row {
+        /* Tablet (768px+): 2 per row × 10 rows = 20 movies total */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .movie-row {
+        /* Desktop (1024px+): 3 per row × 6 rows = 18 movies total */
         grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
     }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1440px) {
     .movie-row {
-        grid-template-columns: repeat(5, 1fr);
+        /* Large Desktop (1440px+): 4 per row × 5 rows = 20 movies total */
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
     }
 }
-
 
 /* ------------------------------------------------------------
-   BANNER CAROUSEL WRAPPER
+   MOVIE CARD STYLING - FLEXIBLE HEIGHT FOR ALL CONTENT
    ------------------------------------------------------------ */
 
-#trending-banner,
-.banner {
+.movie-card {
+    background: var(--card);
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    height: auto;
+    /* Changed from fixed height to auto */
+    min-height: 380px;
+    /* Minimum height */
+}
+
+.movie-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 220px;
+    /* Consistent image height */
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+}
+
+/* Movie info - Flexible content area */
+.movie-info {
+    padding: 1.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    min-height: 160px;
+    /* Minimum for content */
+}
+
+/* Movie title with proper text handling */
+.movie-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0;
+    min-height: 2.6em;
+    /* Reserve space for 2 lines */
+}
+
+.movie-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--secondary);
+    font-weight: 600;
+    padding: 0.3rem 0;
+    flex-shrink: 0;
+}
+
+.rating-star {
+    color: #FFD700;
+    font-size: 1.1rem;
+}
+
+.movie-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex-shrink: 0;
+    margin-top: auto;
+    /* Push to bottom */
+}
+
+.watchlist-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    flex-shrink: 0;
+}
+
+.watchlist-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.watchlist-btn.added {
+    background: #28a745;
+}
+
+.view-details {
+    text-align: center;
+    color: var(--accent);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.8rem;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.view-details:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------
+   MOBILE-FRIENDLY ADJUSTMENTS
+   ------------------------------------------------------------ */
+
+@media (max-width: 479px) {
+    .movie-row {
+        gap: 1.2rem;
+    }
+
+    .movie-card {
+        min-height: 360px;
+        border-radius: 12px;
+    }
+
+    .movie-card img {
+        height: 200px;
+    }
+
+    .movie-info {
+        padding: 1rem;
+        gap: 0.6rem;
+        min-height: 140px;
+    }
+
+    .movie-title {
+        font-size: 1rem;
+        min-height: 2.4em;
+    }
+
+    .movie-rating {
+        font-size: 0.9rem;
+        padding: 0.2rem 0;
+    }
+
+    .movie-actions {
+        gap: 0.6rem;
+    }
+
+    .watchlist-btn,
+    .view-details {
+        padding: 0.7rem;
+        font-size: 0.9rem;
+        min-height: 40px;
+    }
+
+    .rating-star {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+    .movie-card {
+        min-height: 380px;
+    }
+
+    .movie-card img {
+        height: 210px;
+    }
+
+    .movie-info {
+        min-height: 150px;
+    }
+}
+
+/* ------------------------------------------------------------
+   TRENDING SECTION - EXACT SPECIFICATIONS
+   ------------------------------------------------------------ */
+
+#trending-banner {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
-    /* responsive height */
     overflow: hidden;
     border-radius: 12px;
     margin-bottom: 2rem;
 }
 
+/* Mobile Trending Grid */
+@media (max-width: 479px) {
+    #trending-banner {
+        /* Mobile (< 480px): 1 per row × 2 rows = 2 movies total */
+        aspect-ratio: auto !important;
+        height: auto !important;
+        display: grid !important;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.2rem;
+    }
 
-/* ------------------------------------------------------------
-   BANNER ITEMS (Stacked Fade Slides)
-   ------------------------------------------------------------ */
+    .banner-item {
+        position: relative !important;
+        opacity: 1 !important;
+        display: block !important;
+        height: auto;
+        min-height: 360px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--card);
+    }
 
-.banner-item {
-    position: absolute;
-    inset: 0;
-    /* shorthand: top:0; right:0; bottom:0; left:0 */
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 0;
-    transition: opacity 1s ease-in-out;
-    overflow: hidden;
+    .banner-item:nth-child(n+3) {
+        display: none !important;
+        /* Show only 2 movies on mobile */
+    }
 }
 
-.banner-item.active {
-    opacity: 1;
-    z-index: 2;
+@media (min-width: 480px) and (max-width: 767px) {
+    #trending-banner {
+        /* Small Tablet (480px+): 2 per row × 2 rows = 4 movies total */
+        aspect-ratio: auto !important;
+        height: auto !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .banner-item {
+        position: relative !important;
+        opacity: 1 !important;
+        display: block !important;
+        height: auto;
+        min-height: 380px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--card);
+    }
+
+    .banner-item:nth-child(n+5) {
+        display: none !important;
+        /* Show only 4 movies on small tablet */
+    }
 }
 
+/* Tablet and above - Show Banner Carousel */
+@media (min-width: 768px) {
+    #trending-banner {
+        /* Tablet (768px+): banner */
+        aspect-ratio: 16 / 9;
+        height: 450px;
+        display: block !important;
+    }
 
-/* ------------------------------------------------------------
-   BANNER IMAGE
-   ------------------------------------------------------------ */
+    .banner-item {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        z-index: 0;
+        transition: opacity 1s ease-in-out;
+        overflow: hidden;
+    }
 
+    .banner-item.active {
+        opacity: 1;
+        z-index: 2;
+    }
+}
+
+/* Banner carousel styles */
 .banner-image {
     width: 100%;
     height: 100%;
@@ -82,24 +350,16 @@
     display: block;
 }
 
-
-/* ------------------------------------------------------------
-   BANNER OVERLAY CONTENT
-   ------------------------------------------------------------ */
-
 .banner-info {
     position: absolute;
     inset: 0;
-    /* fill entire banner */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-
     background: linear-gradient(to top,
             rgba(19, 29, 46, 0.98) 0%,
             rgba(19, 29, 46, 0.85) 50%,
             rgba(19, 29, 46, 0) 100%);
-
     padding: 3rem 2rem 2rem;
     color: var(--soft-bg);
     z-index: 10;
@@ -116,20 +376,13 @@
     font-size: 1.1rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
-
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-
     color: var(--secondary);
 }
-
-
-/* ------------------------------------------------------------
-   BANNER BUTTON
-   ------------------------------------------------------------ */
 
 .banner-btn {
     padding: 0.5rem 1rem;
@@ -141,7 +394,6 @@
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
@@ -150,56 +402,128 @@
     transform: translateY(-2px);
 }
 
+/* Mobile trending grid styling */
+@media (max-width: 767px) {
+    .banner-image {
+        height: 200px;
+        object-fit: cover;
+    }
 
-/* ------------------------------------------------------------
-   MOVIE DETAIL PAGE CARD
-   ------------------------------------------------------------ */
+    .banner-info {
+        position: relative;
+        background: linear-gradient(to bottom,
+                rgba(255, 255, 255, 0.95) 0%,
+                rgba(255, 255, 255, 1) 100%);
+        padding: 1rem !important;
+        color: var(--text);
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.8rem;
+    }
 
-.movie-detail-card {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: 1fr;
-    align-items: start;
+    .banner-info h3 {
+        font-size: 1.1rem !important;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-    background: var(--card);
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-}
+    .banner-info p {
+        display: none !important;
+    }
 
-@media (min-width: 900px) {
-    .movie-detail-card {
-        grid-template-columns: 320px 1fr;
+    .banner-btn {
+        display: none !important;
+    }
+
+    .trending-nav {
+        display: none !important;
+    }
+
+    /* Add movie card styling to trending items on mobile */
+    .banner-item .movie-rating {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--secondary);
+        font-weight: 600;
+    }
+
+    .banner-item .rating-star {
+        color: #FFD700;
+        font-size: 1rem;
     }
 }
 
-.movie-detail-card .poster img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.meta-row {
+/* Trending carousel navigation */
+.trending-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin: 0.5rem 0;
+    gap: 10px;
+    z-index: 20;
 }
 
-
-/* ------------------------------------------------------------
-   GENERIC BUTTON
-   ------------------------------------------------------------ */
-
-.btn {
-    background: var(--accent);
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: none;
+.trending-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
+    border: none;
     transition: background 0.3s ease;
 }
 
-.btn:hover {
-    background: var(--secondary);
+.trending-dot.active {
+    background: white;
+}
+
+/* ------------------------------------------------------------
+   WATCHLIST BUTTON STATES
+   ------------------------------------------------------------ */
+
+.watchlist-btn .btn-text {
+    display: inline;
+}
+
+.watchlist-btn .added-text {
+    display: none;
+}
+
+.watchlist-btn.added .btn-text {
+    display: none;
+}
+
+.watchlist-btn.added .added-text {
+    display: inline;
+}
+
+.watchlist-btn::before {
+    content: "➕";
+    font-size: 1rem;
+}
+
+.watchlist-btn.added::before {
+    content: "✅";
+}
+
+/* ------------------------------------------------------------
+   SECTION TITLES
+   ------------------------------------------------------------ */
+
+.section-title {
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin: 1.4rem 0 .6rem;
+    color: var(--text);
 }

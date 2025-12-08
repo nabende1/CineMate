@@ -1,0 +1,199 @@
+/* src\css\filters.css */
+
+/* ========================================
+   FILTER STYLES
+   ======================================== */
+
+.filter-container {
+    position: relative;
+    display: inline-block;
+}
+
+.filter-btn {
+    background: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.filter-btn:hover {
+    background: #e0e0e0;
+    border-color: #aaa;
+}
+
+.filter-btn.has-filters {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.filter-btn.has-filters span {
+    font-weight: bold;
+}
+
+.filter-arrow {
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+/* --- DROPDOWN CONTAINER --- */
+.filter-options {
+    /* Hiding mechanism */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    max-height: 0;
+    overflow: hidden;
+
+    /* Positioning and styling */
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    min-width: 280px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    margin-top: 0.5rem;
+    transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease;
+}
+
+.filter-options.active {
+    /* Showing mechanism */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    /* Make dropdown scrollable when content is long */
+    max-height: 60vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* --- DROPDOWN CONTENT --- */
+.filter-group {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #eee;
+}
+
+/* Ensure groups don't collapse when container is flex */
+.filter-options .filter-group,
+.filter-options .filter-select,
+.filter-options .filter-checkboxes {
+    flex: none;
+}
+
+.filter-group h4 {
+    margin: 0 0 0.8rem 0;
+    color: #333;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.filter-checkboxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    color: #333;
+    font-size: 0.85rem;
+}
+
+.filter-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    /* Keep actions visible by sticking them to the bottom of the dropdown */
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding-top: 0.75rem;
+    padding-bottom: 0.5rem;
+    /* subtle separation */
+    box-shadow: 0 -6px 12px rgba(0,0,0,0.03);
+}
+
+.apply-filters,
+.clear-filters {
+    flex: 1;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.apply-filters {
+    background: #007bff;
+    color: white;
+}
+
+.apply-filters:hover {
+    background: #0056b3;
+}
+
+.clear-filters {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.clear-filters:hover {
+    background: #ccc;
+}
+
+
+/* --- MEDIA QUERIES FOR MOBILE FILTER (Centered fixed overlay) --- */
+@media (max-width: 767px) {
+    .mobile-filters .filter-options {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        width: 90%;
+        max-width: 350px;
+        max-height: 80vh;
+        overflow-y: auto;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .mobile-filters .filter-options.active {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Adjust filter button margin on desktop */
+@media (min-width: 768px) {
+    .desktop-top-nav .filter-container {
+        margin-left: 1rem;
+    }
+}

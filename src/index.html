@@ -43,39 +43,25 @@
     <script type="module" src="/js/filters.mjs"></script>
     <script type="module" src="/js/pages/home.mjs"></script>
 
-    // src\index.html (UPDATED SCRIPT BLOCK)
-    
     <script type="module">
         import { loadLayoutPartials } from '/js/utils/partials.mjs';
-        // Import the managers
-        import { initializeFilterManager } from '/js/filters.mjs';
-        import { initializeSearchManager } from '/js/search.mjs';
-
-        // You might have a runHomePage or similar function here
-        // import { runHomePage } from '/js/pages/home.mjs'; 
+        import { initializeApp } from '/js/utils/initialize-app.mjs';
+        
+        // Only if you have page-specific logic:
+        // import { runHomePage } from '/js/pages/home.mjs';
 
         document.addEventListener('DOMContentLoaded', async () => {
             console.log('🚀 Initializing home page...');
-
+            
             await loadLayoutPartials();
-
-            // 1. Initialize Core Managers
-            const filterManager = initializeFilterManager();
-            const searchManager = initializeSearchManager();
-
-            // 2. Attach filter listeners and load genres
-            filterManager.setupEventListeners();
-            await filterManager.loadGenres(); // Load genres for the genre filters to appear
-
-            // 3. (Optional) Run home page logic
-             if (typeof runHomePage === 'function') {
-                runHomePage();
-             }
-
+            await initializeApp();
+            
+            // Page-specific logic if needed:
+            // if (typeof runHomePage === 'function') runHomePage();
+            
             console.log('✅ Home page fully initialized.');
         });
     </script>
-    </body>
 </body>
 
 </html>

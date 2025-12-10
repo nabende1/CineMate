@@ -79,23 +79,14 @@
 
     <script type="module">
         import { loadLayoutPartials } from '/js/utils/partials.mjs';
-        import { initializeFilterManager } from '/js/filters.mjs';
-        import { initializeSearchManager } from '/js/search.mjs';
+        import { initializeApp } from '/js/utils/initialize-app.mjs';
 
         document.addEventListener('DOMContentLoaded', async () => {
             console.log('🚀 Initializing movie page...');
-
-            // Load header/sidebar/footer partials first
+            
             await loadLayoutPartials();
-
-            // Initialize filters and search managers so header controls work
-            const filterManager = initializeFilterManager();
-            filterManager.setupEventListeners();
-            await filterManager.loadGenres();
-
-            // Initialize search manager (suggestions + listening to filters)
-            initializeSearchManager();
-
+            await initializeApp();
+            
             console.log('✅ Movie page fully initialized');
         });
     </script>

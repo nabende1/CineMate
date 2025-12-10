@@ -63,26 +63,16 @@
 
     <script type="module">
         import { loadLayoutPartials } from '/js/utils/partials.mjs';
-        import { initializeFilterManager } from '/js/filters.mjs';
-        import { initializeSearchManager } from '/js/search.mjs';
+        import { initializeApp } from '/js/utils/initialize-app.mjs';
         import { runTrendingPage } from '/js/pages/trending.mjs';
 
         document.addEventListener('DOMContentLoaded', async () => {
             console.log('🚀 Initializing trending page...');
-
+            
             await loadLayoutPartials();
-
-            // Initialize Core Managers
-            const filterManager = initializeFilterManager();
-            const searchManager = initializeSearchManager();
-
-            // Setup managers
-            filterManager.setupEventListeners();
-            await filterManager.loadGenres();
-
-            // Run page-specific logic
+            await initializeApp();
             runTrendingPage();
-
+            
             console.log('✅ Trending page fully initialized');
         });
     </script>

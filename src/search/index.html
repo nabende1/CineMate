@@ -52,29 +52,18 @@
     <script type="module" src="/js/search.mjs"></script>
     <script type="module" src="/js/pages/search.mjs"></script>
 
-
     <script type="module">
         import { loadLayoutPartials } from '/js/utils/partials.mjs';
-        import { initializeFilterManager } from '/js/filters.mjs';
-        import { initializeSearchManager } from '/js/search.mjs';
+        import { initializeApp } from '/js/utils/initialize-app.mjs';
         import { runSearchPage } from '/js/pages/search.mjs';
 
         document.addEventListener('DOMContentLoaded', async () => {
             console.log('🚀 Initializing search page...');
-
-            // 1. Load the Header/Sidebar/Footer HTML
+            
             await loadLayoutPartials();
-
-            // 2. Initialize Core Managers AFTER HTML is guaranteed to be in the DOM
-            const filterManager = initializeFilterManager();
-            const searchManager = initializeSearchManager();
-
-            // 3. Attach filter listeners. The runSearchPage init handles genre loading and UI sync.
-            filterManager.setupEventListeners();
-
-            // 4. Run the search logic for this page
+            const { filterManager } = await initializeApp();
             await runSearchPage(filterManager);
-
+            
             console.log('✅ Search page fully initialized.');
         });
     </script>

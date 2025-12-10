@@ -57,11 +57,15 @@
 
     <script type="module">
         import { loadLayoutPartials } from '/js/utils/partials.mjs';
+        import { initializeApp } from '/js/utils/initialize-app.mjs';
 
         document.addEventListener('DOMContentLoaded', async () => {
-            console.log('🚀 Initializing page...');
+            console.log('🚀 Initializing watchlist page...');
+            
             await loadLayoutPartials();
-            console.log('✅ Page fully initialized');
+            await initializeApp();
+            
+            console.log('✅ Watchlist page fully initialized');
         });
     </script>
 </body>

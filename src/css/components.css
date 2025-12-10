@@ -115,3 +115,73 @@
 .suggestions strong {
     color: var(--secondary);
 }
+
+/* Watchlist Button Styles */
+.watchlist-btn {
+    background: #bb4230;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+    min-width: 120px;
+}
+
+.watchlist-btn:hover {
+    background: #d65a3f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.watchlist-btn.added {
+    background: #4CAF50;
+}
+
+.watchlist-btn.added:hover {
+    background: #45a049;
+}
+
+.watchlist-btn .btn-text,
+.watchlist-btn .added-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.movie-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.view-details {
+    background: #1d1d1d;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.view-details:hover {
+    background: #2d2d2d;
+    transform: translateY(-2px);
+}
+
+.movie-card {
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+}

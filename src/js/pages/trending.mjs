@@ -22,14 +22,12 @@ class TrendingPage {
     init() {
         setActiveNavigation();
         this.setupEventListeners();
-        // Listen for filter changes from the global FilterManager
         document.addEventListener('filtersChanged', (e) => this.handleFiltersChanged(e));
-
+        document.addEventListener('watchlistUpdated', () => this.updateMoviesLoadedCounter());
         this.loadTrending();
     }
 
     handleFiltersChanged(e) {
-        // Reset paging and reload with new filters
         this.currentPage = 1;
         this.allMovies = [];
         this.hasMoreMovies = true;
@@ -115,10 +113,8 @@ class TrendingPage {
     }
 
     async handleTrendingResponse(response) {
-        // raw results from TMDB (contain genre_ids)
         let rawMovies = response.results || [];
 
-        // If a global filter manager exists, apply client-side filtering
         const filterManager = window.filterManager;
         if (filterManager && typeof filterManager.filterMovies === 'function') {
             rawMovies = filterManager.filterMovies(rawMovies);
@@ -132,8 +128,12 @@ class TrendingPage {
         const transformedMovies = this.transformMovies(rawMovies);
         this.allMovies = [...this.allMovies, ...transformedMovies];
 
-        this.renderMovies(transformedMovies);
-        this.initWatchlistButtons();
+        if (this.currentPage === 1) {
+            renderMovieGrid(transformedMovies, this.grid);
+        } else {
+            renderMovieGridAppend(this.grid, transformedMovies);
+        }
+        
         this.updateMoviesLoadedCounter();
 
         if (this.currentPage >= (response.total_pages || 1)) {
@@ -145,19 +145,13 @@ class TrendingPage {
         return movies.map(movie => ({
             id: movie.id,
             title: movie.title || 'Untitled',
-            poster: movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : '/images/fallback_poster.jpg',
+            poster: movie.poster_path ? `https://image.tmdb.org/t/p/w300${movie.poster_path}` : '',
+            poster_path: movie.poster_path,
             rating: movie.vote_average || 0,
             overview: movie.overview || '',
-            year: movie.release_date ? movie.release_date.slice(0, 4) : ''
+            year: movie.release_date ? movie.release_date.slice(0, 4) : '',
+            release_date: movie.release_date || ''
         }));
-    }
-
-    renderMovies(movies) {
-        if (this.currentPage === 1) {
-            renderMovieGrid(this.allMovies, this.grid);
-        } else {
-            renderMovieGridAppend(this.grid, movies);
-        }
     }
 
     handleNoMovies() {
@@ -226,25 +220,6 @@ class TrendingPage {
             const count = this.allMovies.length;
             this.moviesLoadedCounter.textContent = `${count} movie${count !== 1 ? 's' : ''} loaded`;
         }
-    }
-
-    initWatchlistButtons() {
-        const watchlist = JSON.parse(localStorage.getItem('watchlist') || '[]');
-        const watchlistButtons = document.querySelectorAll('.watchlist-btn');
-        
-        watchlistButtons.forEach(button => {
-            const movieCard = button.closest('.movie-card');
-            if (movieCard) {
-                const movieId = parseInt(movieCard.dataset.movieId);
-                const isInWatchlist = watchlist.some(item => {
-                    if (typeof item === 'number') return item === movieId;
-                    if (typeof item === 'object' && item.id) return item.id === movieId;
-                    return false;
-                });
-                
-                button.classList.toggle('added', isInWatchlist);
-            }
-        });
     }
 }
 

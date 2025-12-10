@@ -58,6 +58,7 @@
     <script type="module" src="/js/utils/partials.mjs"></script>
     <script type="module" src="/js/filters.mjs"></script>
     <script type="module" src="/js/search.mjs"></script>
+    <script type="module" src="/js/components/MovieGrid.mjs"></script>
     <script type="module" src="/js/pages/trending.mjs"></script>
 
     <script type="module">
@@ -71,16 +72,15 @@
 
             await loadLayoutPartials();
 
-            // 1. Initialize Core Managers (must be done after partials are loaded)
+            // Initialize Core Managers
             const filterManager = initializeFilterManager();
             const searchManager = initializeSearchManager();
 
-            // 2. Attach filter listeners and load genres
-            // This is required to make the header filters functional and visible.
+            // Setup managers
             filterManager.setupEventListeners();
             await filterManager.loadGenres();
 
-            // 3. Run page-specific logic
+            // Run page-specific logic
             runTrendingPage();
 
             console.log('✅ Trending page fully initialized');
